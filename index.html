@@ -3,116 +3,613 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabor Rápido - Comidas Rápidas</title>
+    <title>Sabor Rápido - ¡El Mejor Sabor de Yumbo!</title>
     <style>
-        body {
+        :root {
+            --primary: #e63946;
+            --secondary: #ffb703;
+            --dark: #1d3557;
+            --light: #fff8f0;
+            --accent: #2a9d8f;
+        }
+
+        * {
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff8f0;
-            color: #333;
         }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            padding-bottom: 60px;
+        }
+
+        /* HEADER & HERO BANNER */
         header {
-            background-color: #e63946;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.95), rgba(247, 127, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+
         header h1 {
-            margin: 0;
-            font-size: 2.5em;
+            font-size: 3.2em;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            color: var(--secondary);
+            letter-spacing: 1px;
         }
+
         header p {
+            font-size: 1.3em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+            font-weight: bold;
+        }
+
+        /* BARRA NAVEGACIÓN Y CARRITO */
+        nav {
+            background-color: var(--dark);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        nav .logo {
+            color: white;
+            font-weight: bold;
             font-size: 1.2em;
         }
+
+        .cart-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.05);
+            background-color: #ffa200;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 0 20px;
         }
-        h2 {
+
+        .section-title {
             text-align: center;
-            color: #1d3557;
+            color: var(--dark);
+            font-size: 2.2em;
             margin-bottom: 30px;
+            position: relative;
         }
-        .menu-grid {
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* SECCIÓN PROMOCIONES */
+        .promos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            margin-bottom: 50px;
         }
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 20px;
+
+        .promo-card {
+            background: linear-gradient(145deg, #ffe6e6, #fff);
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .card img {
-            width: 100%;
-            height: 180px;
+
+        .promo-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
             object-fit: cover;
         }
+
+        .promo-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.8em;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* MENÚ DE PRODUCTOS */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 18px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
         .card h3 {
-            margin: 15px 0 5px;
-            color: #e63946;
+            color: var(--dark);
+            margin-bottom: 8px;
         }
+
         .card p {
-            padding: 0 15px;
             color: #666;
-            font-size: 0.95em;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .price {
             font-weight: bold;
-            color: #2a9d8f;
-            font-size: 1.2em;
-            margin: 15px 0;
+            color: var(--accent);
+            font-size: 1.25em;
         }
+
+        .add-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: #c92a37;
+        }
+
+        /* MODAL DEL CARRITO Y CHECKOUT */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 15px;
+            color: var(--dark);
+        }
+
+        .checkout-form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkout-form input, .checkout-form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .confirm-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .confirm-btn:hover {
+            background-color: #218376;
+        }
+
+        /* SECCIÓN CONTACTO & FOOTER */
+        .contact-section {
+            background-color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .social-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #1d3557;
+            padding: 25px 20px;
+            background-color: var(--dark);
             color: white;
-            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
 
+    <!-- NAV BAR -->
+    <nav>
+        <div class="logo">🔥 Sabor Rápido</div>
+        <button class="cart-btn" onclick="openCart()">🛒 Carrito (<span id="cart-count">0</span>)</button>
+    </nav>
+
+    <!-- HEADER / BANNER -->
     <header>
-        <h1>🍔 Sabor Rápido 🍟</h1>
-        <p>Las mejores comidas rápidas de la ciudad, crujientes y deliciosas.</p>
+        <h1>🍔 SABOR RÁPIDO 🍟</h1>
+        <p>¡El verdadero sabor artesanal de Yumbo directo a tu puerta!</p>
     </header>
 
     <div class="container">
-        <h2>Nuestro Menú</h2>
+
+        <!-- PROMOCIONES Y COMBOS -->
+        <h2 class="section-title">🔥 Promociones & Combos 🔥</h2>
+        <div class="promos-grid">
+            <div class="promo-card">
+                <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?auto=format&fit=crop&w=300&q=80" alt="Combo Perro">
+                <div>
+                    <span class="promo-badge">¡OFERTA DEL DÍA!</span>
+                    <h4>Combo Perro Especial</h4>
+                    <p style="font-size: 0.85em; color: #555;">Lleva 1 Perro Especial + Gaseosa personal gratis.</p>
+                    <div class="price" style="font-size: 1.1em;">$13.000 COP</div>
+                    <button class="add-btn" style="margin-top: 5px;" onclick="addToCart('Combo Perro Especial + Gaseosa', 13000)">Agregar Combo</button>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=300&q=80" alt="Combo Pareja">
+                <div>
+                    <span class="promo-badge">COMBO PAREJA</span>
+                    <h4>Doble Sabor Monster</h4>
+                    <p style="font-size: 0.85em; color: #555;">2 Hamburguesas Monster + Papas familiares + Gaseosa 1.5L.</p>
+                    <div class="price" style="font-size: 1.1em;">$38.000 COP</div>
+                    <button class="add-btn" style="margin-top: 5px;" onclick="addToCart('Combo Doble Sabor Monster', 38000)">Agregar Combo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MENÚ PRINCIPAL -->
+        <h2 class="section-title">Nuestro Menú</h2>
         <div class="menu-grid">
+
+            <!-- HAMBURGUESAS -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Hamburguesa">
-                <h3>Hamburguesa Monster</h3>
-                <p>Doble carne a la parrilla, queso cheddar fundido, tocino crujiente y salsa de la casa.</p>
-                <div class="price">$18.000 COP</div>
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Hamburguesa Monster">
+                <div class="card-body">
+                    <h3>Hamburguesa Monster</h3>
+                    <p>Doble carne a la parrilla, queso cheddar fundido, tocino crujiente y salsa especial.</p>
+                    <div class="card-footer">
+                        <span class="price">$18.000</span>
+                        <button class="add-btn" onclick="addToCart('Hamburguesa Monster', 18000)">+ Agregar</button>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="Pizza">
-                <h3>Pizza Pepperoni</h3>
-                <p>Masa artesanal crujiente, abundante queso mozzarella y rodajas de pepperoni tostado.</p>
-                <div class="price">$25.000 COP</div>
+                <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=500&q=80" alt="Hamburguesa Crispy">
+                <div class="card-body">
+                    <h3>Pollo Crispy Supreme</h3>
+                    <p>Pechuga apanada extra crujiente, ensalada coleslaw, pepinillos y mayonesa de ajo.</p>
+                    <div class="card-footer">
+                        <span class="price">$16.500</span>
+                        <button class="add-btn" onclick="addToCart('Pollo Crispy Supreme', 16500)">+ Agregar</button>
+                    </div>
+                </div>
             </div>
 
+            <!-- PIZZAS -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="Pizza Pepperoni">
+                <div class="card-body">
+                    <h3>Pizza Pepperoni</h3>
+                    <p>Masa artesanal crujiente, abundante queso mozzarella y rodajas de pepperoni tostado.</p>
+                    <div class="card-footer">
+                        <span class="price">$25.000</span>
+                        <button class="add-btn" onclick="addToCart('Pizza Pepperoni', 25000)">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80" alt="Pizza Jamon y Queso">
+                <div class="card-body">
+                    <h3>Pizza Jamón & Queso</h3>
+                    <p>Salsa de tomate casera, queso mozzarella fundido y jamón de pierna seleccionado.</p>
+                    <div class="card-footer">
+                        <span class="price">$23.000</span>
+                        <button class="add-btn" onclick="addToCart('Pizza Jamón & Queso', 23000)">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERROS Y SALCHIPAPAS -->
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?auto=format&fit=crop&w=500&q=80" alt="Perro Caliente">
-                <h3>Perro Caliente Especial</h3>
-                <p>Salchicha ahumada, queso gratinado, papitas crujientes, tocineta y salsas tradicionales.</p>
-                <div class="price">$12.000 COP</div>
+                <div class="card-body">
+                    <h3>Perro Caliente Especial</h3>
+                    <p>Salchicha ahumada gigante, queso gratinado, papitas fosforito, tocineta y salsas.</p>
+                    <div class="card-footer">
+                        <span class="price">$12.000</span>
+                        <button class="add-btn" onclick="addToCart('Perro Caliente Especial', 12000)">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&w=500&q=80" alt="Salchipapa">
+                <div class="card-body">
+                    <h3>Salchipapa Sabor Rápido</h3>
+                    <p>Cama de papas a la francesa, salchicha manguera, queso mozzarella gratinado y maíz tierno.</p>
+                    <div class="card-footer">
+                        <span class="price">$20.000</span>
+                        <button class="add-btn" onclick="addToCart('Salchipapa Sabor Rápido', 20000)">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESPECIALIDADES -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1621996346565-e3def6164286?auto=format&fit=crop&w=500&q=80" alt="Lasaña">
+                <div class="card-body">
+                    <h3>Lasaña Mixta</h3>
+                    <p>Capas de pasta artesanal rellenas de carne molida, pollo desmechado y mucho queso gratinado.</p>
+                    <div class="card-footer">
+                        <span class="price">$22.000</span>
+                        <button class="add-btn" onclick="addToCart('Lasaña Mixta', 22000)">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80" alt="Burrito">
+                <div class="card-body">
+                    <h3>Burrito Tex-Mex</h3>
+                    <p>Tortilla gigante de trigo rellena de carne desmechada, frijol refrito, guacamole y pico de gallo.</p>
+                    <div class="card-footer">
+                        <span class="price">$19.000</span>
+                        <button class="add-btn" onclick="addToCart('Burrito Tex-Mex', 19000)">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SECCIÓN CONTACTO Y UBICACIÓN -->
+    <div class="contact-section">
+        <h2 class="section-title">¡Haz tu Pedido Directo!</h2>
+        <p>Atendemos domicilios en todo el municipio de Yumbo, Valle del Cauca.</p>
+        <div class="contact-grid">
+            <div class="contact-item">
+                📱 <span>WhatsApp: <a href="#" class="social-link">+57 310 000 0000</a></span>
+            </div>
+            <div class="contact-item">
+                📸 <span>Instagram: <a href="#" class="social-link">@SaborRapidoYumbo</a></span>
+            </div>
+            <div class="contact-item">
+                📍 <span>Ubicación: Yumbo, Colombia</span>
             </div>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Sabor Rápido - Creado para la clase de Informática.</p>
+        <p>&copy; 2026 Sabor Rápido. Todos los derechos reservados. Yumbo, Valle del Cauca, Colombia.</p>
     </footer>
 
+    <!-- MODAL DEL CARRITO DE COMPRAS SIMULADO -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🛒 Tu Carrito de Compras</h3>
+                <span class="close-btn" onclick="closeCart()">&times;</span>
+            </div>
+            <div id="cart-items">
+                <p style="text-align: center; color: #777;">Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-total" id="cart-total">Total: $0 COP</div>
+
+            <!-- FORMULARIO DE PAGO SIMULADO -->
+            <form class="checkout-form" onsubmit="processOrder(event)">
+                <h4 style="margin-top: 15px; color: var(--dark);">Datos para el Domicilio</h4>
+                <input type="text" placeholder="Tu Nombre Completo" required>
+                <input type="text" placeholder="Dirección de Entrega en Yumbo" required>
+                <select required>
+                    <option value="">Selecciona Método de Pago</option>
+                    <option value="efectivo">Efectivo al recibir</option>
+                    <option value="nequi">Nequi</option>
+                    <option value="daviplata">Daviplata</option>
+                    <option value="tarjeta">Tarjeta Débito/Crédito</option>
+                </select>
+                <button type="submit" class="confirm-btn">🛍️ Confirmar y Realizar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DE INTERACTIVIDAD -->
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            alert(`¡${name} agregado al carrito!`);
+        }
+
+        function updateCart() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const itemsContainer = document.getElementById('cart-items');
+            const totalContainer = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<p style="text-align: center; color: #777;">Tu carrito está vacío.</p>';
+                totalContainer.innerText = 'Total: $0 COP';
+                return;
+            }
+
+            itemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                itemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span><strong>$${item.price.toLocaleString('es-CO')} COP</strong></span>
+                    </div>
+                `;
+            });
+
+            totalContainer.innerText = `Total: $${total.toLocaleString('es-CO')} COP`;
+        }
+
+        function openCart() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function processOrder(e) {
+            e.preventDefault();
+            if (cart.length === 0) {
+                alert('Agrega al menos un producto al carrito antes de realizar tu pedido.');
+                return;
+            }
+            const orderNum = Math.floor(100000 + Math.random() * 900000);
+            alert(`¡Pedido #${orderNum} confirmado con éxito!\n\nTu comida va en camino a tu dirección en Yumbo.\n¡Gracias por comprar en Sabor Rápido!`);
+            cart = [];
+            updateCart();
+            closeCart();
+        }
+    </script>
 </body>
 </html>
