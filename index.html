@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor Rápido - Comidas Rápidas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff8f0;
+            color: #333;
+        }
+        header {
+            background-color: #e63946;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #1d3557;
+            margin-bottom: 30px;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .card h3 {
+            margin: 15px 0 5px;
+            color: #e63946;
+        }
+        .card p {
+            padding: 0 15px;
+            color: #666;
+            font-size: 0.95em;
+        }
+        .price {
+            font-weight: bold;
+            color: #2a9d8f;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1d3557;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🍔 Sabor Rápido 🍟</h1>
+        <p>Las mejores comidas rápidas de la ciudad, crujientes y deliciosas.</p>
+    </header>
+
+    <div class="container">
+        <h2>Nuestro Menú</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Hamburguesa">
+                <h3>Hamburguesa Monster</h3>
+                <p>Doble carne a la parrilla, queso cheddar fundido, tocino crujiente y salsa de la casa.</p>
+                <div class="price">$18.000 COP</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="Pizza">
+                <h3>Pizza Pepperoni</h3>
+                <p>Masa artesanal crujiente, abundante queso mozzarella y rodajas de pepperoni tostado.</p>
+                <div class="price">$25.000 COP</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?auto=format&fit=crop&w=500&q=80" alt="Perro Caliente">
+                <h3>Perro Caliente Especial</h3>
+                <p>Salchicha ahumada, queso gratinado, papitas crujientes, tocineta y salsas tradicionales.</p>
+                <div class="price">$12.000 COP</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Sabor Rápido - Creado para la clase de Informática.</p>
+    </footer>
+
+</body>
+</html>
